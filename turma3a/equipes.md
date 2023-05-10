@@ -35,6 +35,18 @@
 | JULIANA DE OLIVEIRA SILVA SOUSA |
 | RAFAEL FRANCISCO DE ABREU SOARES LIMA |
 
+## Grupo D
+**[Código: grupo D](grupoD.ino)**
+| Nome |
+| - |
+| BRENO DE SOUZA MORAES REGO |
+| Bruno Pilão da Rocha |
+| Bruno Xavier da Silva Filho |
+| Gustavo Azevedo Raia de Siqueira |
+| Ian Amoedo Benicio |
+| Luis carlos pastura macedo |
+| MATEUS NORCIA CAROLINO BARBOSA LIMA |
+
 
 ## Grupo F
 **[Código: grupo F](grupoF.ino)**
