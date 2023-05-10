@@ -9,3 +9,14 @@
 | MARIA GIULIA ALVES PESSANHA SIMOES |
 | THAIS DE ARAÚJO BUSTAMANTE |
 | VITOR DE CASTRO NEVES LOBIANCO |
+
+## Grupo D
+**[Código: grupo D](grupoD.ino)**
+| Nome |
+| - |
+| Caio Araújo da Luz |
+| JOAO LUCAS DE REZENDE CURVELLO DE PAULA |
+| JOAO PEDRO DALLEPRANE CORREIA |
+| João Pedro Takamoto Constant |
+| Théo furtado mauricio |
+
