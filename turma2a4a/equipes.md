@@ -10,6 +10,16 @@
 | THAIS DE ARAÚJO BUSTAMANTE |
 | VITOR DE CASTRO NEVES LOBIANCO |
 
+## Grupo C
+**[Código: grupo C](grupoC.ino)**
+| Nome |
+| - |
+| Victor Hugo Rocha |
+| Leonardo Tims |
+| William Fagundes |
+| Matheus Herzog |
+| Gabriel Esposito |
+
 ## Grupo D
 **[Código: grupo D](grupoD.ino)**
 | Nome |
