@@ -15,7 +15,7 @@ Permite a prática de vários tópicos dos cursos para os quais a disciplina é 
 ## Especificações
 Sistema baseado no microcontrolador Atmel ATmega V2560, Arduíno Mega 2560 com shield baseado no LCD 1602.  
 Na versão atual, o sistema recebe do usuário, através do monitor serial, instruções em sequência, cujas palavras pertencem a código binário de 11 bits
-como entrada E(E10 E9 ... E0).
+como entrada E(E10 E9 ... E0).  
 A palavra binária de entrada se decompõe em opcode e operando.  
 - Os três bits mais significativos da cada palavra do código representam o *opcode* das operações a realizar.
 - Os oito bits menos signficativos constituem o campo de operando, cuja forma depende de cada operação. 
