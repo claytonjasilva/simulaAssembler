@@ -1,5 +1,17 @@
 # Componentes das equipes
 
+## Grupo A
+**[Código: grupo A](grupoA.ino)**
+| Nome |
+| - |
+| Beatriz dos Santos Vieira |
+| Bernardo de Oliveira Pinto |
+| DANIEL BRANDÃO LLOYD |
+| Guilherme Barros de Melo Almeida |
+| JOAO VICTOR GUIMARÃES CAMPELO |
+| Matheus Peçanha Cavalcante |
+| THIAGO NOVAES BORSONI |
+
 ## Grupo B
 **[Código: grupo B](grupoB.ino)**
 | Nome |
