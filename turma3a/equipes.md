@@ -12,6 +12,18 @@
 | Maria da Graça Oliveira Castro de Mello |
 | VICTOR DA CONCEIÇÃO COUTINHO |
 
+## Grupo C
+**[Código: grupo C](grupoC.ino)**
+| Nome |
+| - |
+| Breno Selem de manhães Huf |
+| DAVI LUIS DOS SANTOS COPLE LIMA |
+| Gabriel Lacerda da Fontoura |
+| HENRIQUE BARBOSA DANTAS ROLAN |
+| JULIANA DE OLIVEIRA SILVA SOUSA |
+| RAFAEL FRANCISCO DE ABREU SOARES LIMA |
+
+
 ## Grupo F
 **[Código: grupo F](grupoF.ino)**
 | Nome |
