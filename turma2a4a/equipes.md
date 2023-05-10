@@ -1,7 +1,7 @@
 # Componentes das equipes
 
 ## Grupo A
-**[Código: grupo A]()
+**[Código: grupo A](grupoA.ino)**
 | Nome |
 | - |
 | Gabriel da Silveira Martinez |
