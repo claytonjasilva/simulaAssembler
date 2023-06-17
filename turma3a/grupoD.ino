@@ -1,8 +1,8 @@
 /*
-Mateus Norcia
 Gustavo Raia
-Ian Amoedo
 Bruno Pilao
+Mateus Norcia
+Ian Amoedo
 Bruno Xavier
 Breno de Souza
 Luis Pastura
@@ -43,7 +43,7 @@ String Y;
 
 String leitura_teclas = ""; // String vazia para armazenar os caracteres lidos
 
-String sinal;
+String sinal = "0";
 
 Keypad teclado_personalizado = Keypad(makeKeymap(TECLAS_MATRIZ), PINOS_LINHAS, PINOS_COLUNAS, LINHAS, COLUNAS);
 
@@ -91,7 +91,6 @@ String complemento_1(String dado) {
   lcd.println(resposta);
   return resposta;
 }
-
 /* Complemento de 2 */
 String complemento_2(String input) {
   String resultado = complemento_1(input);
@@ -101,9 +100,21 @@ String complemento_2(String input) {
   return resultado;
 }
 
-// FUNÇÕES MONÁDICAS =============================
+/* Soma de números de 4 bits */
+String add(String dado) {
+  int num1 = ((dado[3] - 48) * 8) + ((dado[4] - 48) * 4) + ((dado[5] - 48) * 2) + ((dado[6] - 48) * 1);
+  int num2 = ((dado[7] - 48) * 8) + ((dado[8] - 48) * 4) + ((dado[9] - 48) * 2) + ((dado[10] - 48) * 1);
+  int soma = num1 + num2;
 
-// Soma de números de 8 bits
+  String resposta = decimal_binario(soma);
+  resposta = resposta.substring(3, 11);
+
+  lcd.clear();
+  lcd.println(resposta);
+
+  return resposta;
+}
+/* Soma de números de 8 bits */
 String addI(String dado, String X) {
   int num1 = ((dado[3] - 48) * 128) + ((dado[4] - 48) * 64) + ((dado[5] - 48) * 32) + ((dado[6] - 48) * 16) + ((dado[7] - 48) * 8) + ((dado[8] - 48) * 4) + ((dado[9] - 48) * 2) + ((dado[10] - 48) * 1);
   int num2 = ((X[0] - 48) * 128) + ((X[1] - 48) * 64) + ((X[2] - 48) * 32) + ((X[3] - 48) * 16) + ((X[4] - 48) * 8) + ((X[5] - 48) * 4) + ((X[6] - 48) * 2) + ((X[7] - 48) * 1);
@@ -119,7 +130,39 @@ String addI(String dado, String X) {
   return resposta;
 }
 
-// Subtração de números de 8 bits
+/* Subtração de números de 4 bits */
+String sub(String input) {
+  int num1 = ((input[3] - 48) * 8) + ((input[4] - 48) * 4) + ((input[5] - 48) * 2) + ((input[6] - 48) * 1);
+  int num2 = ((input[7] - 48) * 8) + ((input[8] - 48) * 4) + ((input[9] - 48) * 2) + ((input[10] - 48) * 1);
+  int subtracao = (num1 - num2);
+
+  String resposta;
+
+  if (num1 > num2) {
+    resposta = decimal_binario(subtracao);
+    resposta = resposta.substring(3, 11);
+
+    lcd.clear();
+    lcd.println(resposta);    
+  } else {
+    resposta = decimal_binario(num2 - num1);
+    resposta = resposta.substring(3, 11);
+    switch (MODO_SUB) {
+      case 0:
+        resposta = resposta.substring(3, 11);
+        resposta[0] = '1';
+        break;
+      case 1:
+        resposta = complemento_1(resposta);
+        break;
+      case 2:
+        resposta = complemento_2(resposta);
+        break;
+    }
+  }
+  return resposta;
+}
+/* Subtração de números de 8 bits */
 String subI(String dado, String X) {
   dado = dado.substring(3,11);
   int num1 = ((dado[0] - 48) * 128) + ((dado[1] - 48) * 64) + ((dado[2] - 48) * 32) + ((dado[3] - 48) * 16) + ((dado[4] - 48) * 8) + ((dado[5] - 48) * 4) + ((dado[6] - 48) * 2) + ((dado[7] - 48) * 1);
@@ -152,58 +195,6 @@ String subI(String dado, String X) {
   return resposta;
 }
 
-// FUNÇÕES DIÁDICAS ==============================
-
-// Soma de números de 4 bits
-String add(String dado) {
-  int num1 = ((dado[3] - 48) * 8) + ((dado[4] - 48) * 4) + ((dado[5] - 48) * 2) + ((dado[6] - 48) * 1);
-  int num2 = ((dado[7] - 48) * 8) + ((dado[8] - 48) * 4) + ((dado[9] - 48) * 2) + ((dado[10] - 48) * 1);
-  int soma = num1 + num2;
-
-  String resposta = decimal_binario(soma);
-  resposta = resposta.substring(3, 11);
-
-  lcd.clear();
-  lcd.println(resposta);
-
-  return resposta;
-}
-
-// Subtração de números de 4 bits
-String sub(String input) {
-  int num1 = ((input[3] - 48) * 8) + ((input[4] - 48) * 4) + ((input[5] - 48) * 2) + ((input[6] - 48) * 1);
-  int num2 = ((input[7] - 48) * 8) + ((input[8] - 48) * 4) + ((input[9] - 48) * 2) + ((input[10] - 48) * 1);
-  int subtracao = (num1 - num2);
-
-  String resposta;
-
-  if (num1 > num2) {
-    resposta = decimal_binario(subtracao);
-    resposta = resposta.substring(3, 11);
-
-    lcd.clear();
-    lcd.println(resposta);    
-  } else {
-    resposta = decimal_binario(num2 - num1);
-    resposta = resposta.substring(3, 11);
-    switch (MODO_SUB) {
-      case 0:
-        resposta = resposta.substring(3, 11);
-        resposta[0] = '1';
-        break;
-      case 1:
-        resposta = complemento_1(resposta);
-        break;
-      case 2:
-        resposta = complemento_2(resposta);
-        break;
-    }
-  }
-  return resposta;
-}
-
-// FUNÇÕES QUE NÃO UTILIZAM O CAMPO DE OPERANDO ==
-
 String storage(String input) {
   input = input.substring(3, 11);
 
@@ -222,16 +213,29 @@ String transport() {
   return Y;
 }
 
-String ldo(String X) {
+String ldo(String input) {
   String dado = X; // Lê o conteúdo da variável X
 
   for (int i = 3; i < PALAVRA; i++) {
-    if (X[i] == '1')
-      dado = Y;
-  }
-  String resposta = sinal + dado;
+    if (input[i] == '1'){
+      Serial.println("Caso == 1");
+      
+      lcd.clear();
+      lcd.print(dado);        
 
-  return resposta;
+      return dado;
+    }
+  }
+  Serial.println("Caso == 0");
+  Y = dado;
+   
+  String resposta = sinal + dado; 
+
+  lcd.clear();
+  lcd.print(resposta);        
+
+  return resposta;      
+
 }
 
 // ============================================================================================================
@@ -249,68 +253,61 @@ int selecaoOp(String input) {
    /* Caso 1 - Comp1 */
   if (input[0] == '0' && input[1] == '0' && input[2] == '0') {
     Serial.println("\nCaso 1 - Comp1");
-    Serial.println("Entrada: " + input);
+    Serial.println(" Entrada: " + input);
 
     X = complemento_1(input);
     Serial.println(" Saída/X: " + X);
   }
-
   /* Caso 2 - Add */
   else if (input[0] == '0' && input[1] == '0' && input[2] == '1') {
     Serial.println("\nCaso 2 - Add");
-    Serial.println("Entrada: " + input);
+    Serial.println(" Entrada: " + input);
 
     X = add(input);
     Serial.println(" Saída/X: " + X);    
   }
-
   /* Caso 3 - AddI */
   else if (input[0] == '0' && input[1] == '1' && input[2] == '0') {
     Serial.println("\nCaso 3 - Add I");
-    Serial.println("Entrada: " + input);
+    Serial.println(" Entrada: " + input);
 
     X = addI(input, X);
 
     Serial.println(" Saída/X: " + X);
   }
-
   /* Caso 4 - Sub */
   else if (input[0] == '0' && input[1] == '1' && input[2] == '1') {
     Serial.println("\nCaso 4 - Sub");
-    Serial.println("Entrada: " + input);
+    Serial.println(" Entrada: " + input);
 
     X = sub(input);
     Serial.println(" Saída/X: " + X);
   }
-
   /* Caso 5 - SubI */
   else if (input[0] == '1' && input[1] == '0' && input[2] == '0') {
     Serial.println("\nCaso 5 - SubI");
-    Serial.println("Entrada: " + input);
+    Serial.println(" Entrada: " + input);
 
     X = subI(input, X);
     Serial.println(" Saída/X: " + X);
   }
-
   /* Caso 6 - Ldo */
   else if (input[0] == '1' && input[1] == '0' && input[2] == '1') {
     Serial.println("\nCaso 6 - Ldo");
-    ldo(X);
+    ldo(input);
   }
-
   /* Caso 7 - Sto */
   else if (input[0] == '1' && input[1] == '1' && input[2] == '0') {
     Serial.println("\nCaso 7 - Sto");
-    Serial.println("Entrada: " + input);
+    Serial.println(" Entrada: " + input);
 
     storage(input);
     Serial.println("Saída/X: " + X);
   }
-
   /* Caso 8 - Trans */
   else if (input[0] == '1' && input[1] == '1' && input[2] == '1') {
     Serial.println("\nCaso 8 - Trans");
-    Serial.println("Entrada: " + input);
+    Serial.println(" Entrada: " + input);
 
     transport();
     Serial.println("Saída/Y: " + Y);
@@ -359,8 +356,11 @@ void loop() {
           lcd.clear();
           contador = 0;
 
+          break;
+
         default:
           Serial.println("Apenas 0 ou 1");
+          break;
       }
     }
   }
